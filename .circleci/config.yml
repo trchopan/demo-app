@@ -12,13 +12,13 @@ jobs:
     steps:
       - run:
           name: Clone the git repository
-          command: git clone $CIRCLE_REPOSITORY_URL -b $CIRCLE_BRANCH .
+          command: git clone https://github.com/trchopan/demo-app.git -b $CIRCLE_BRANCH .
       - run:
           name: Check podman
           command: podman version
       - run:
           name: Build
-          command: podman build . -t docker-registry.local:5000/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
+          command: podman build . -t docker-registry.chop.dev:5000/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
       - run:
           name: Push to docker-registry 
-          command: podman push docker-registry.local:5000/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
+          command: podman push docker-registry.chop.dev:5000/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
